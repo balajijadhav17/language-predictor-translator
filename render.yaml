@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: language-prediction-translation
+    env: python
+    buildCommand: "bash build.sh"
+    startCommand: "gunicorn LanguagePredictionTranslation.wsgi:application"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: PYTHON_VERSION
+        value: "3.11.9"

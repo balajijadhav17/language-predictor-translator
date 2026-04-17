@@ -1,0 +1,8 @@
+{
+  "accuracy": 0.972039,
+  "accuracy_percent": 97.2,
+  "train_size": 29480,
+  "test_size": 14520,
+  "label_count": 22,
+  "model_path": "language_model.pkl"
+}

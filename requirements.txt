@@ -1,0 +1,9 @@
+Django==5.1.5
+deep-translator==1.11.4
+dj-database-url==2.3.0
+gunicorn==23.0.0
+joblib==1.4.2
+numpy==2.2.2
+pandas==2.2.3
+scikit-learn==1.6.1
+whitenoise==6.9.0

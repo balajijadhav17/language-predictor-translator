@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Text</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+        }
+
+       
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        
+        h2 {
+            color: rgb(214, 87, 2);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #ff7e5f;
+            color: #ffffff;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 55px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #be5a13;
+        }
+
+        
+        p {
+            font-size: 1.1em;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #ffffff;
+            background-color: #ff7e5f;
+            padding: 7px 20px;
+            margin: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-radius: 25px;
+        }
+
+        a:hover {
+            background-color: #be5a13;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Translate Text</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="text" rows="5" cols="40" placeholder="Enter text here">{% if text %}{{ text }}{% endif %}</textarea><br>
+            <h3 style="margin-right:200px;">Select Language For Translation</h3>
+            <select name="target_lang">
+                <option value="en" {% if target_lang == 'en' %}selected{% endif %}>English</option>
+                <option value="hi" {% if target_lang == 'hi' %}selected{% endif %}>Hindi</option>
+                <option value="mr" {% if target_lang == 'mr' %}selected{% endif %}>Marathi</option>
+            </select><br>
+            <button type="submit" style="margin-bottom: 20px;">Predict & Translate</button>
+        </form>
+        {% if translated_text %}
+            <p>Predicted Language: <strong>{{ predicted_lang }}</strong></p>
+            <p>Translated Text: <strong>{{ translated_text }}</strong></p>
+        {% endif %}
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+</body>
+</html>
