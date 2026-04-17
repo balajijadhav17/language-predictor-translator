@@ -1,13 +1,17 @@
 services:
   - type: web
     name: language-prediction-translation
-    env: python
-    buildCommand: "bash build.sh"
-    startCommand: "gunicorn LanguagePredictionTranslation.wsgi:application"
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn LanguagePredictionTranslation.wsgi:application
     envVars:
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: DJANGO_DEBUG
         value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*"
       - key: PYTHON_VERSION
-        value: "3.11.9"
+        value: "3.13.1"
+      - key: DJANGO_SETTINGS_MODULE
+        value: "LanguagePredictionTranslation.settings"
