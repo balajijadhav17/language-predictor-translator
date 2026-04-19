@@ -2,8 +2,8 @@ services:
   - type: web
     name: language-prediction-translation
     runtime: python
-    pythonVersion: "3.13.1"        # ← add this line
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    pythonVersion: "3.13.1"
+    buildCommand: chmod +x build.sh && ./build.sh
     startCommand: gunicorn LanguagePredictionTranslation.wsgi:application
     envVars:
       - key: DJANGO_SECRET_KEY
