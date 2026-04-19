@@ -2,6 +2,7 @@ services:
   - type: web
     name: language-prediction-translation
     runtime: python
+    pythonVersion: "3.13.1"        # ← add this line
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
     startCommand: gunicorn LanguagePredictionTranslation.wsgi:application
     envVars:
@@ -11,5 +12,3 @@ services:
         value: "False"
       - key: ALLOWED_HOSTS
         value: "*"
-      - key: PYTHON_VERSION
-        value: "3.13.1"
